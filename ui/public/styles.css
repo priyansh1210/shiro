@@ -664,3 +664,43 @@ textarea:focus, input:focus, select:focus { outline: none; border-color: var(--a
   .item.kv .item-main { flex-direction: column; gap: 0; }
   .item.kv .item-main b { max-width: none; }
 }
+/* Manual theme toggle */
+
+:root[data-theme="dark"] {
+  --bg: #1B1816;
+  --bg-2: #23201D;
+  --panel: #2A2623;
+  --ink: #F2EBE3;
+  --ink-2: #B8ACA1;
+  --ink-3: #8C8178;
+  --line: #3B3530;
+  --dot: #34302B;
+  --accent: #E08463;
+  --accent-2: #EE9A7B;
+  --accent-ink: #1B1816;
+  --accent-soft: #3D2A22;
+  --shadow: rgba(0, 0, 0, .35);
+  --card-shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 8px 22px -12px rgba(0, 0, 0, .7);
+  --reject: #E5675A;
+  --maybe: #E0A843;
+  --advance: #5DB57E;
+  --focus: #7FB2E8;
+  --paper: #F7F3EC;
+  --bubble: #F7F3EC;
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+.theme-toggle {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  padding: 7px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+}
