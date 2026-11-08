@@ -1567,7 +1567,7 @@ function applyTheme(theme) {
   );
 }
 
-const savedTheme = localStorage.getItem('shiro-theme');
+const savedTheme = store.get('theme');
 
 if (savedTheme === 'light' || savedTheme === 'dark') {
   applyTheme(savedTheme);
@@ -1584,5 +1584,5 @@ themeToggle.addEventListener('click', () => {
   const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
   applyTheme(newTheme);
-  localStorage.setItem('shiro-theme', newTheme);
+  store.set('theme', theme);
 });
