@@ -2,7 +2,7 @@
 
 # Shiro
 
-**Ten hiring-side reviewers try to reject your resume. A writer fixes it using only true facts. Then Claude fills in the application and leaves the Submit button to you.**
+**Ten hiring-side reviewers (eleven for design roles) try to reject your resume. A writer fixes it using only true facts. Then Claude fills in the application and leaves the Submit button to you.**
 
 A job-application workspace for [Claude Code](https://claude.com/claude-code). It runs on your own Claude subscription and keeps all your data on your computer.
 
@@ -69,12 +69,13 @@ You don't need the app. The same steps work as commands inside Claude Code:
 ```mermaid
 flowchart TD
     JD["📋 Job description"] --> P["🎴 Picky: picks your best base resume"]
-    P --> R1 & R2 & R3 & R4 & R5 & R6 & R7 & R8 & R9 & R10
-    subgraph Panel["The panel: 10 reviewers in parallel, none sees the others"]
+    P --> R1 & R2 & R3 & R4 & R5 & R6 & R7 & R8 & R9 & R10 & R11
+    subgraph Panel["The panel: 10–11 reviewers in parallel, none sees the others"]
         R1[ATS] ~~~ R2[Recruiter] ~~~ R3[Hiring manager] ~~~ R4[Teammate] ~~~ R5[Rival applicant]
         R6[CEO] ~~~ R7[Tech interviewer] ~~~ R8[Skeptic] ~~~ R9[Skip-level] ~~~ R10[HR screener]
+        R11["Design lead (design roles)"]
     end
-    R1 & R2 & R3 & R4 & R5 & R6 & R7 & R8 & R9 & R10 --> D["⚖️ Gavvy: debrief, conflicts settled, fixes ranked P0 / P1 / P2"]
+    R1 & R2 & R3 & R4 & R5 & R6 & R7 & R8 & R9 & R10 & R11 --> D["⚖️ Gavvy: debrief, conflicts settled, fixes ranked P0 / P1 / P2"]
     D --> W["🖋️ Quill: senior resume writer, true facts only"]
     W --> O["📄 resume.pdf · changes.md · questions.md"]
     O -. optional round 2 .-> Panel
@@ -92,6 +93,7 @@ Each reviewer gives a verdict (**REJECT**, **MAYBE** or **ADVANCE**), a score ou
 | **CEO** | No impact, no ownership, forgettable |
 | **Technical interviewer** | Claims you couldn't defend, plus the questions they'd ask |
 | **Skeptic** | Inflated verbs, suspicious numbers, inconsistent dates |
+| **Design lead** | Design roles only: no evidence of craft, user thinking, process or product impact |
 | **Skip-level manager** | Wrong level for the role, flat trajectory |
 | **HR screener** | Eligibility, gaps, missing basics, things that shouldn't be there |
 
@@ -115,7 +117,7 @@ runs/2026-11-07-acme-backend-engineer/
 
 A local web page where you can watch the crew work. Each agent is a small animated character: Picky picks, the panel stamps verdicts, Gavvy runs the debrief and Quill writes.
 
-- **Review.** Switch each of the 13 agents on or off, and choose its model (Sonnet, Opus, Haiku) and effort. The recommended mix uses Sonnet for the reviewers and Opus for the debrief and the writer. Click any character to read their full report.
+- **Review.** Switch each of the 14 agents on or off (the design lead starts off; switch it on for design roles), and choose its model (Sonnet, Opus, Haiku) and effort. The recommended mix uses Sonnet for the reviewers and Opus for the debrief and the writer. Click any character to read their full report.
 - **Apply.** Fillo fills the form in your Chrome, live, and stops before Submit.
 - **Memory.** Browse your whole career memory by file and search across all of it. Add resumes, certificates, transcripts and links. **Remove anything with one click and undo it.** You can also tell Memo what to forget in plain words.
 - **Usage meters** show your 5-hour and weekly Claude limits, the same numbers as `/usage`, and refreshing them is free.
@@ -167,7 +169,7 @@ memory/
 
 ## Usage and cost
 
-A full review runs 12–13 agents. With every agent on Opus it used about **16% of a Pro plan's 5-hour session**. Using the recommended mix, switching off reviewers you don't need, or lowering efforts all make it cheaper. After every review, the app shows how much of your session that run used. Memory and Apply default to Sonnet at low effort, because they're mostly look-up work.
+A full review runs 12–14 agents. With every agent on Opus it used about **16% of a Pro plan's 5-hour session**. Using the recommended mix, switching off reviewers you don't need, or lowering efforts all make it cheaper. After every review, the app shows how much of your session that run used. Memory and Apply default to Sonnet at low effort, because they're mostly look-up work.
 
 ## Customize
 
@@ -210,7 +212,7 @@ In the Memory tab, click the bin icon next to any item, document, link or resume
 ## Project layout
 
 ```text
-.claude/agents/   the 13 agents: picker, 10 reviewers, debrief, writer
+.claude/agents/   the 14 agents: picker, 11 reviewers, debrief, writer
 .claude/skills/   /setup, /review, /apply, /remember
 ui/               the local web app (no build step, no dependencies)
 tools/            free local helpers: resume text, resume → HTML → PDF, document filing

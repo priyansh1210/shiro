@@ -40,7 +40,7 @@ async function api(path, body) {
 }
 
 // Must match VERSION in ui/server.mjs. A mismatch means an old server is still running.
-const APP_VERSION = '0.9.1';
+const APP_VERSION = '0.9.2';
 let appState = { resumes: [], runs: [], memory: false, jobs: [] };
 
 function showOutdated() {
@@ -239,11 +239,14 @@ const RECOMMENDED = {
 const RECOMMENDED_MODEL = Object.fromEntries(TEAM_ORDER.map((k) => [k, ['debrief', 'resume-writer'].includes(k) ? 'opus' : 'sonnet']));
 const MODEL_SHORT = { sonnet: 'Sonnet', opus: 'Opus', haiku: 'Haiku', fable: 'Fable' };
 const EFFORT_SHORT = { low: 'L', medium: 'M', high: 'H' };
+// Reviewers that only fit some jobs start switched off (the design lead judges design roles).
+const DEFAULT_OFF = new Set(['design-lead']);
+const defaultOn = (k) => !DEFAULT_OFF.has(k);
 const savedTeam = store.get('team', {});
 const team = Object.fromEntries(TEAM_ORDER.map((k) => {
   const s = savedTeam[k] || {};
   return [k, {
-    on: s.on !== false,
+    on: typeof s.on === 'boolean' ? s.on : defaultOn(k),
     effort: EFFORT_SHORT[s.effort] ? s.effort : RECOMMENDED[k],
     model: MODEL_SHORT[s.model] ? s.model : RECOMMENDED_MODEL[k],
   }];
@@ -301,9 +304,9 @@ function renderTeam() {
   saveTeam();
 }
 $('#teamReset').addEventListener('click', () => {
-  for (const k of TEAM_ORDER) team[k] = { on: true, effort: RECOMMENDED[k], model: RECOMMENDED_MODEL[k] };
+  for (const k of TEAM_ORDER) team[k] = { on: defaultOn(k), effort: RECOMMENDED[k], model: RECOMMENDED_MODEL[k] };
   renderTeam();
-  toast('Recommended: Sonnet for the picker and reviewers, Opus for the debrief and writer, all agents on.');
+  toast('Recommended: Sonnet for the picker and reviewers, Opus for the debrief and writer. Every agent is on except Dottie, the design lead: switch it on for design roles.');
 });
 for (const [id, model] of [['#teamAllSonnet', 'sonnet'], ['#teamAllOpus', 'opus']]) {
   $(id).addEventListener('click', () => {

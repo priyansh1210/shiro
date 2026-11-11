@@ -4,12 +4,12 @@ A job-application workspace for Claude Code. There are no API keys: everything r
 
 ## Commands
 - `/setup [resume]`: create the private career memory from the user's resume and collect standard form answers.
-- `/review [JD path | URL] [resume]`: 10 reviewers try to reject the resume in parallel → debrief → the resume writer produces a tailored version.
+- `/review [JD path | URL] [resume]`: 10 reviewers (plus the design lead for design roles) try to reject the resume in parallel → debrief → the resume writer produces a tailored version.
 - `/apply <URL> [resume]`: fill an application form in Chrome from memory. Never submits.
 - `/remember <fact>`: save a new career fact to memory.
 
 ## Layout
-- `.claude/agents/`: `resume-picker` (chooses the best base resume for a job), the panel reviewers (`ats`, `recruiter`, `hiring-manager`, `teammate`, `rival-applicant`, `ceo`, `technical-interviewer`, `skeptic`, `skip-level-manager`, `hr-screener`), plus `debrief` and `resume-writer`.
+- `.claude/agents/`: `resume-picker` (chooses the best base resume for a job), the panel reviewers (`ats`, `recruiter`, `hiring-manager`, `teammate`, `rival-applicant`, `ceo`, `technical-interviewer`, `skeptic`, `design-lead`, `skip-level-manager`, `hr-screener`; `design-lead` is off by default in the app and runs in `/review` only for design roles), plus `debrief` and `resume-writer`.
 - `.claude/skills/`: the four commands.
 - `ui/review-pipeline.mjs`: how the app runs a review: free local steps (JD, resume text via `tools/resume-text.mjs`, keyword pre-rank, files, `tools/resume-html.mjs` + PDF) plus one `claude -p --agent <name> --tools ""` call per agent with inputs inline. Agent files therefore support two modes: inline (reply with the output) and file paths (read/write files, used by the `/review` skill in the terminal).
 - `ui/memory-edit.mjs`: free removals from the Memory tab (an item of a memory file, a document, a link, a resume). It saves the touched files to `memory/.trash/<id>/` first so Undo restores them exactly; the trash is emptied on server start and after an hour. Agents ignore `memory/.trash/`. Free-text "Forget" goes to Memo as `/remember FORGET: …`.

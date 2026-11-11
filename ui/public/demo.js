@@ -39,8 +39,11 @@ export function demoReview(emit, team) {
     at(3400, { kind: 'agent_done', id: 'picker', agent: 'resume-picker', status: 'completed', tokens: 8400, summary: 'PICK memory/resume/backend-engineer.pdf — closest to a backend role, covers 7 of 9 must-haves' });
   }
 
+  const panel = PANEL.filter(isOn);
+  const count = (v) => panel.filter((a) => VERDICTS[a][0] === v).length;
+  const avg = panel.length ? (panel.reduce((t, a) => t + VERDICTS[a][1], 0) / panel.length).toFixed(1) : '–';
   let latest = 0;
-  PANEL.filter(isOn).forEach((a, n) => {
+  panel.forEach((a, n) => {
     const start = 4200 + n * 260;
     at(start, { kind: 'agent_start', id: a, agent: a, text: 'Reviewing the resume' });
     ACTIVITY.forEach((text, k) => at(start + 900 + k * (1400 + jitter(700)), { kind: 'agent_activity', id: a, text }));
@@ -55,7 +58,7 @@ export function demoReview(emit, team) {
     at(d, { kind: 'agent_start', id: 'debrief', agent: 'debrief', text: 'Chairing the debrief' });
     at(d + 1200, { kind: 'agent_activity', id: 'debrief', text: 'Thinking… 1.2k' });
     at(d + 2800, { kind: 'agent_activity', id: 'debrief', text: 'Writing the report' });
-    at(d + 4200, { kind: 'agent_done', id: 'debrief', agent: 'debrief', status: 'completed', tokens: 21000, summary: 'Average 5.2/10 · ADVANCE 2 · MAYBE 6 · REJECT 3' });
+    at(d + 4200, { kind: 'agent_done', id: 'debrief', agent: 'debrief', status: 'completed', tokens: 21000, summary: `Average ${avg}/10 · ADVANCE ${count('ADVANCE')} · MAYBE ${count('MAYBE')} · REJECT ${count('REJECT')}` });
   }
 
   const w = d + 4900;
@@ -73,8 +76,8 @@ export function demoReview(emit, team) {
     '',
     '| | |',
     '|---|---|',
-    '| Average | 5.1 / 10 |',
-    '| Verdicts | 2 advance · 6 maybe · 3 reject |',
+    `| Average | ${avg} / 10 |`,
+    `| Verdicts | ${count('ADVANCE')} advance · ${count('MAYBE')} maybe · ${count('REJECT')} reject |`,
     '',
     'Top fixes made:',
     '- Headline now says *Backend Engineer*',

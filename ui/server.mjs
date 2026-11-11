@@ -15,7 +15,7 @@ import { runReviewPipeline, AGENTS, AGENT_EFFORTS } from './review-pipeline.mjs'
 import { createMemoryEditor } from './memory-edit.mjs';
 
 // Bump together with APP_VERSION in public/app.js, so an old server left running is spotted.
-const VERSION = '0.9.1';
+const VERSION = '0.9.2';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PUBLIC_DIR = path.join(ROOT, 'ui', 'public');
 const RUNS_DIR = path.join(ROOT, 'runs');

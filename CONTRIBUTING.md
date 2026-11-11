@@ -49,8 +49,9 @@ Only run real reviews when you need to test agent behavior, because each one use
 
 1. Copy a reviewer in `.claude/agents/` (e.g. `skeptic.md`) to `<your-reviewer>.md`.
 2. Change the persona and the "How you reject" section. Keep the rules, the inline/file modes and the output format (the verdict line `REJECT | MAYBE | ADVANCE x/10` is parsed by the app).
-3. Add the name to `PANEL` in `ui/review-pipeline.mjs`, the reviewer list in `.claude/skills/review/SKILL.md` and `.claude/agents/debrief.md`, and give it a character in `ui/public/creatures.js`.
-4. Run the free demo to check the panel layout, then one real review.
+3. Add the name to `PANEL` and `RECOMMENDED` in `ui/review-pipeline.mjs`, `RECOMMENDED` in `ui/public/app.js`, `VERDICTS` in `ui/public/demo.js`, the reviewer list in `.claude/skills/review/SKILL.md` and `.claude/agents/debrief.md`, and give it a character in `ui/public/creatures.js` (with its own accessory). If the reviewer only fits some jobs, add it to `DEFAULT_OFF` in `ui/public/app.js` and say in the skill when to run it.
+4. Update the reviewer counts in `README.md`, `CLAUDE.md` and the lede in `ui/public/index.html`.
+5. Run the free demo to check the panel layout, then one real review.
 
 ## Pull requests
 
