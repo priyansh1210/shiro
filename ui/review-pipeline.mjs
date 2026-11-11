@@ -12,12 +12,12 @@ import { cachedText, writeCache } from '../tools/resume-text.mjs';
 import { convertFile } from '../tools/resume-html.mjs';
 import { htmlToPdf, pdfPages } from '../tools/html-to-pdf.mjs';
 
-export const PANEL = ['ats', 'recruiter', 'hiring-manager', 'teammate', 'rival-applicant', 'ceo', 'technical-interviewer', 'skeptic', 'skip-level-manager', 'hr-screener'];
+export const PANEL = ['ats', 'recruiter', 'hiring-manager', 'teammate', 'rival-applicant', 'ceo', 'technical-interviewer', 'skeptic', 'design-lead', 'skip-level-manager', 'hr-screener'];
 export const AGENTS = ['resume-picker', ...PANEL, 'debrief', 'resume-writer'];
 export const AGENT_EFFORTS = ['low', 'medium', 'high'];
 export const RECOMMENDED = {
   'resume-picker': 'low', ats: 'low', recruiter: 'low', 'hiring-manager': 'medium', teammate: 'low',
-  'rival-applicant': 'medium', ceo: 'low', 'technical-interviewer': 'medium', skeptic: 'medium',
+  'rival-applicant': 'medium', ceo: 'low', 'technical-interviewer': 'medium', skeptic: 'medium', 'design-lead': 'medium',
   'skip-level-manager': 'low', 'hr-screener': 'low', debrief: 'medium', 'resume-writer': 'high',
 };
 const MEMORY_FOR_WRITER = ['profile', 'experience', 'education', 'projects', 'certifications', 'skills', 'achievements'];

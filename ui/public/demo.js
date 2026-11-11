@@ -12,6 +12,7 @@ const VERDICTS = {
   ceo: ['MAYBE', 5, 'One real result (checkout latency −38%), the rest is activity'],
   'technical-interviewer': ['MAYBE', 5, '“Expert in distributed systems” would not survive question 2'],
   skeptic: ['REJECT', 3, 'An intern who “spearheaded the architecture” reads as inflated'],
+  'design-lead': ['MAYBE', 6, 'Good product thinking, but limited evidence of accessibility outcomes'],
   'skip-level-manager': ['ADVANCE', 7, 'Reads as a solid new grad, which is the level we’re hiring'],
   'hr-screener': ['MAYBE', 6, 'Six-month gap in 2025 isn’t explained; two date formats'],
 };
@@ -54,7 +55,7 @@ export function demoReview(emit, team) {
     at(d, { kind: 'agent_start', id: 'debrief', agent: 'debrief', text: 'Chairing the debrief' });
     at(d + 1200, { kind: 'agent_activity', id: 'debrief', text: 'Thinking… 1.2k' });
     at(d + 2800, { kind: 'agent_activity', id: 'debrief', text: 'Writing the report' });
-    at(d + 4200, { kind: 'agent_done', id: 'debrief', agent: 'debrief', status: 'completed', tokens: 21000, summary: 'Average 5.1/10 · ADVANCE 2 · MAYBE 5 · REJECT 3' });
+    at(d + 4200, { kind: 'agent_done', id: 'debrief', agent: 'debrief', status: 'completed', tokens: 21000, summary: 'Average 5.2/10 · ADVANCE 2 · MAYBE 6 · REJECT 3' });
   }
 
   const w = d + 4900;
@@ -73,7 +74,7 @@ export function demoReview(emit, team) {
     '| | |',
     '|---|---|',
     '| Average | 5.1 / 10 |',
-    '| Verdicts | 2 advance · 5 maybe · 3 reject |',
+    '| Verdicts | 2 advance · 6 maybe · 3 reject |',
     '',
     'Top fixes made:',
     '- Headline now says *Backend Engineer*',

@@ -232,7 +232,7 @@ const TEAM_ORDER = ['resume-picker', ...PANEL, 'debrief', 'resume-writer'];
 const RECOMMENDED = {
   'resume-picker': 'low', ats: 'low', recruiter: 'low', 'hiring-manager': 'medium', teammate: 'low',
   'rival-applicant': 'medium', ceo: 'low', 'technical-interviewer': 'medium', skeptic: 'medium',
-  'skip-level-manager': 'low', 'hr-screener': 'low', debrief: 'medium', 'resume-writer': 'high',
+  'skip-level-manager': 'low', 'hr-screener': 'low', 'design-lead': 'medium', debrief: 'medium', 'resume-writer': 'high',
 };
 // Recommended models: Sonnet where the job is reading and judging against a checklist (nearly as good,
 // much cheaper); Opus where quality shows up directly in what you get (the fix plan and the new resume).

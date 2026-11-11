@@ -38,6 +38,10 @@ export const ROSTER = {
     name: 'Squint', role: 'Skeptic', acc: 'detective', prop: 'magnifier',
     bio: 'The BS detector. Flags inflated verbs, suspicious numbers and dates that don’t add up.',
   },
+  'design-lead': {
+    name: 'Dottie', role: 'Design Lead', acc: 'designer-pencil', prop: 'magnifier',
+    bio: 'Reviews design craft, user experience, accessibility, design decisions and product impact.',
+  },
   'skip-level-manager': {
     name: 'Skip', role: 'Skip-level Manager', acc: 'bowtie', prop: 'magnifier',
     bio: 'Your boss’s boss. Rejects resumes that read at the wrong level for the role.',
@@ -48,7 +52,7 @@ export const ROSTER = {
   },
   debrief: {
     name: 'Gavvy', role: 'Debrief Chair', acc: 'wig', prop: 'gavel',
-    bio: 'Chairs the hiring committee: merges the ten reports, settles conflicts and ranks the fixes.',
+    bio: 'Chairs the hiring committee: merges the eleven reports, settles conflicts and ranks the fixes.',
   },
   'resume-writer': {
     name: 'Quill', role: 'Resume Writer', acc: 'beret', prop: 'pen',
@@ -66,7 +70,7 @@ export const ROSTER = {
 
 export const PANEL = [
   'ats', 'recruiter', 'hiring-manager', 'teammate', 'rival-applicant',
-  'ceo', 'technical-interviewer', 'skeptic', 'skip-level-manager', 'hr-screener',
+  'ceo', 'technical-interviewer', 'skeptic', 'design-lead', 'skip-level-manager', 'hr-screener',
 ];
 
 const INK = '#221C18';
@@ -119,6 +123,12 @@ const ACCESSORIES = {
       <rect x="3" y="60" width="12" height="14" rx="2" fill="#F2EDE4" stroke="#2f2a27" stroke-width="1.5"/>
       <path d="M15 63 Q20 67 15 71" fill="none" stroke="#2f2a27" stroke-width="1.5"/>
       <path class="steam" d="M7 56 q2 -3 0 -6 M11 56 q2 -3 0 -6" stroke="#b3a89d" stroke-width="1.3" fill="none"/>
+    </g>`,
+  'designer-pencil': `
+    <g transform="rotate(35 84 38)">
+      <rect x="82" y="20" width="5" height="25" rx="1.5" fill="#D96C4A" stroke="#8A4A33" stroke-width="1"/>
+      <rect x="82" y="20" width="5" height="4" fill="#E8B43A"/>
+      <path d="M82 45 L87 45 L84.5 51 Z" fill="#E7C9A3" stroke="#8A4A33" stroke-width="0.8"/>
     </g>`,
   badge: `
     <circle cx="60" cy="33" r="9" fill="#5A3B2E"/>
