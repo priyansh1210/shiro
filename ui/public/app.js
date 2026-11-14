@@ -1554,3 +1554,38 @@ refreshState().then((s) => {
     if (runner && !runner.running) { runner.prepare(false); runner.attach(j.id); }
   }
 });
+// ---------- Manual Theme Toggle ----------
+
+const themeToggle = document.querySelector('#themeToggle');
+
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+
+  themeToggle.textContent =
+    theme === 'dark' ? '☀️ Light' : '🌙 Dark';
+
+  themeToggle.setAttribute(
+    'aria-label',
+    theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+  );
+}
+
+const savedTheme = store.get('theme');
+
+if (savedTheme === 'light' || savedTheme === 'dark') {
+  applyTheme(savedTheme);
+} else {
+  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+    ? 'dark'
+    : 'light';
+
+  applyTheme(systemTheme);
+}
+
+themeToggle.addEventListener('click', () => {
+  const currentTheme = document.documentElement.dataset.theme;
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+  applyTheme(newTheme);
+  store.set('theme', theme);
+});
